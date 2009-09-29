@@ -1,0 +1,29 @@
+# Contributor: Jeffrey Gelens <jgelens@gmail.com>
+pkgname=ruby-enterprise
+pkgver=1.8.6
+_pkgver=20090610
+pkgrel=9
+pkgdesc="Ruby Enterprise Edition is a drop-in, transparent solution for improving your Ruby on Rails website's scalability and performance, while decreasing memory usage."
+arch=('i686' 'x86_64')
+url="http://www.rubyenterpriseedition.com"
+license=('GPL2')
+depends=('openssl' 'zlib' 'readline')
+makedepends=('ruby')
+backup=()
+source=(http://rubyforge.org/frs/download.php/58677/ruby-enterprise-$pkgver-$_pkgver.tar.gz)
+install=$pkgname.install
+md5sums=('0bf66ee626918464a6eccdd83c99d63a')
+
+build() {
+  cd "${startdir}/src/ruby-enterprise-${pkgver}-${_pkgver}/source/vendor/google-perftools-1.2"
+  ./configure --disable-dependency-tracking --prefix=/opt/ruby-enterprise
+
+  # Compile and copy tcmalloc
+  make libtcmalloc_minimal.la || return 1
+  cp -Rpf $srcdir/ruby-enterprise-$pkgver-$_pkgver/source/vendor/google-perftools-1.2/.libs/libtcmalloc_minimal*.so.* $pkgdir/opt/ruby-enterprise/lib
+  
+  cd "$srcdir/$pkgname-$pkgver-$_pkgver"
+  ./installer -a /opt/ruby-enterprise --destdir=$pkgdir --dont-install-useful-gems
+}
+
+# vim:ts=2:sw=2:et
