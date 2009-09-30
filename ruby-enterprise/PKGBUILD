@@ -10,6 +10,7 @@ license=('GPL2')
 depends=('openssl' 'zlib' 'readline')
 makedepends=('ruby')
 backup=()
+provides=('ruby')
 source=(http://rubyforge.org/frs/download.php/64475/ruby-enterprise-$pkgver-$_pkgver.tar.gz)
 install=$pkgname.install
 md5sums=('ae00018ce89d95419dfde370fcd485ac')
