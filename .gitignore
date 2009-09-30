@@ -2,3 +2,4 @@
 */pkg
 */src
 *.sw?
+.build_ok

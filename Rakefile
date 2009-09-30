@@ -1,4 +1,4 @@
-ARCH = `arch`
+ARCH = `arch`.strip
 
 def package(pkg)
   pkgname = pkg.is_a?(Hash) ? pkg.keys.first : pkg
@@ -24,9 +24,11 @@ def package(pkg)
     repo = File.read("PKGBUILD") =~ /^arch=.*any/ ? 'any' : ARCH
     cp pkg, "../repo/#{repo}/#{pkg}", :verbose => true
 
-    touch buildok
+    touch '.build_ok'
 
     sh "yaourt -U #{pkg}"
+
+    Dir.chdir '..'
   end
 
   task :all_packages => pkgname
