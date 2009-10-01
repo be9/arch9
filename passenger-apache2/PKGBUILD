@@ -1,5 +1,5 @@
 _pkg=passenger
-pkgname=passenger-enterprise
+pkgname=passenger-apache2
 pkgver=2.2.5
 pkgrel=1
 pkgdesc="mod_rails passenger module for apache2"
