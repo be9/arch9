@@ -3,16 +3,34 @@ pkgname=passenger-common
 pkgver=2.2.5
 pkgrel=1
 pkgdesc="mod_rails passenger common code"
-arch=('any')
+arch=('i686' 'x86_64')
 url="http://www.modrails.com"
 license=('GPL')
+makedepends=('ruby')
 source=(http://rubyforge.org/frs/download.php/63009/$_pkg-$pkgver.tar.gz)
 md5sums=("93838b842ce0a0c65d7c6ef9ce59c41f")
 
 build(){
-  _root=/usr/lib/passenger/
-  mkdir -p $pkgdir$_root
-  cd $pkgdir$_root
-  cp -R $srcdir/$_pkg-$pkgver/* .
-  rm -rf ext debian
+  cd $srcdir/$_pkg-$pkgver
+  rake native_support doc
+
+  # adapted from Rakefile (task fakeroot)
+  libdir=$pkgdir/opt/ruby-enterprise/lib/ruby/1.8
+  extdir=$libdir/`ruby -e 'print RUBY_PLATFORM'`
+  bindir=$pkgdir/opt/ruby-enterprise/bin
+  docdir=$pkgdir/opt/ruby-enterprise/share/doc/phusion_passenger
+  libexecdir=$pkgdir/opt/ruby-enterprise/lib/phusion_passenger
+
+  mkdir -p $libdir
+  cp -R lib/phusion_passenger $libdir/
+
+  mkdir -p $extdir/phusion_passenger
+  cp -R ext/phusion_passenger/*.so $extdir/phusion_passenger/
+
+  mkdir -p $bindir
+  cp bin/* $bindir/
+
+  mkdir -p $docdir
+  cp -R doc/* $docdir/
+  rm -rf $docdir/definitions.h $docdir/Doxyfile $docdir/template
 }
