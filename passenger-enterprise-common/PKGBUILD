@@ -30,7 +30,6 @@ build(){
 
   mkdir -p $bindir
   cp bin/* $bindir/
-  rm $bindir/passenger-spawn-server
 
   mkdir -p $docdir
   cp -R doc/* $docdir/

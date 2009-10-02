@@ -59,3 +59,4 @@ package :fastthread_ruby_enterprise => :ruby_enterprise
 package :ruby_enterprise
 package :passenger_enterprise_apache2 => [:passenger_enterprise_common, :fastthread_ruby_enterprise]
 package :passenger_enterprise_common => :ruby_enterprise
+package :passenger_enterprise_nginx => :passenger_enterprise_common
