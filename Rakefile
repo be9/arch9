@@ -41,6 +41,10 @@ namespace :clean do
   task :packages do
     rm_f FileList['*/**.pkg.tar.gz']+FileList['*/.build_ok']
   end
+
+  task :repo do
+    rm_f FileList['repo/*/**.pkg.tar.gz']
+  end
 end
 
 desc 'Build all packages'
@@ -51,6 +55,7 @@ task :default => :all_packages
 ###################################
 
 package :mysql_ruby_enterprise => :ruby_enterprise
+package :fastthread_ruby_enterprise => :ruby_enterprise
 package :ruby_enterprise
-package :passenger_apache2 => [:passenger_common, :ruby_enterprise]
-package :passenger_common
+package :passenger_enterprise_apache2 => [:passenger_enterprise_common, :fastthread_ruby_enterprise]
+package :passenger_enterprise_common => :ruby_enterprise

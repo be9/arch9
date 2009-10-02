@@ -1,5 +1,7 @@
+# Contributor: oleg dashevskii <olegdashevskii@gmail.com>
+
 _pkg=passenger
-pkgname=passenger-common
+pkgname=passenger-enterprise-common
 pkgver=2.2.5
 pkgrel=1
 pkgdesc="mod_rails passenger common code"
@@ -19,7 +21,6 @@ build(){
   extdir=$libdir/`ruby -e 'print RUBY_PLATFORM'`
   bindir=$pkgdir/opt/ruby-enterprise/bin
   docdir=$pkgdir/opt/ruby-enterprise/share/doc/phusion_passenger
-  libexecdir=$pkgdir/opt/ruby-enterprise/lib/phusion_passenger
 
   mkdir -p $libdir
   cp -R lib/phusion_passenger $libdir/
@@ -29,8 +30,12 @@ build(){
 
   mkdir -p $bindir
   cp bin/* $bindir/
+  rm $bindir/passenger-spawn-server
 
   mkdir -p $docdir
   cp -R doc/* $docdir/
   rm -rf $docdir/definitions.h $docdir/Doxyfile $docdir/template
+
+  # fix ruby invocation
+  sed -i 's|#!/usr/bin/env ruby|#!/opt/ruby-enterprise/bin/ruby|' $bindir/*
 }
