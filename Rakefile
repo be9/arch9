@@ -22,8 +22,7 @@ def package(pkg)
 
     pkg = FileList["*.pkg.tar.gz"].first
 
-    repo = File.read("PKGBUILD") =~ /^arch=.*any/ ? 'any' : ARCH
-    cp pkg, "../repo/#{repo}/#{pkg}", :verbose => true
+    cp pkg, "../repo/#{ARCH}/#{pkg}", :verbose => true
 
     touch '.build_ok'
 
@@ -55,7 +54,7 @@ desc 'Update repo indexes'
 task :update_indexes => ['repo:any', "repo:#{ARCH}"]
 
 namespace :repo do
-  [:any, :i686, :x86_64].each do |arch|
+  [:i686, :x86_64].each do |arch|
     task arch do
       path = "repo/#{arch}"
       db = File.join(path, "#{REPO}.db.tar.gz")
