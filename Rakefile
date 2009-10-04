@@ -51,7 +51,7 @@ end
 ###################################
 
 desc 'Update repo indexes'
-task :update_indexes => ['repo:any', "repo:#{ARCH}"]
+task :update_indexes => "repo:#{ARCH}"
 
 namespace :repo do
   [:i686, :x86_64].each do |arch|
