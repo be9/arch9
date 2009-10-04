@@ -1,4 +1,5 @@
 ARCH = `arch`.strip
+REPO = 'arch9'
 
 def package(pkg)
   pkgname = pkg.is_a?(Hash) ? pkg.keys.first : pkg
@@ -42,15 +43,34 @@ namespace :clean do
     rm_f FileList['*/**.pkg.tar.gz']+FileList['*/.build_ok']
   end
 
-  task :repo do
-    rm_f FileList['repo/*/**.pkg.tar.gz']
+  desc 'Clean repos'
+  task :repos do
+    rm_f FileList['repo/*/**.pkg.tar.gz']+FileList['repo/*/**.db.tar.gz']
+  end
+end
+
+###################################
+
+desc 'Update repo indexes'
+task :update_indexes => ['repo:any', "repo:#{ARCH}"]
+
+namespace :repo do
+  [:any, :i686, :x86_64].each do |arch|
+    task arch do
+      path = "repo/#{arch}"
+      db = File.join(path, "#{REPO}.db.tar.gz")
+      pkgs = FileList[File.join(path, "*.pkg.tar.gz")]
+
+      rm_f db
+      sh "repo-add", db, *pkgs
+    end
   end
 end
 
 desc 'Build all packages'
 task :all_packages
 
-task :default => :all_packages
+task :default => [:all_packages, :update_indexes]
 
 ###################################
 
