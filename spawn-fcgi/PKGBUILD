@@ -1,0 +1,31 @@
+# Contributor: Felix Hanley <felix@seconddrawer.com.au>
+pkgname=spawn-fcgi
+pkgver=1.6.3
+pkgrel=1
+pkgdesc="Fast CGI process spawner"
+arch=('i686' 'x86_64')
+url="http://redmine.lighttpd.net/projects/spawn-fcgi"
+license=('GPL')
+depends=(glibc)
+source=(http://www.lighttpd.net/download/$pkgname-$pkgver.tar.gz conf initscript)
+md5sums=('6d75f9e9435056fa1e574d836d823cd0'
+         '472f48448a405aafa58dbba945a4e34e'
+         'e366c73d001de735dfaf1e165a7afe14')
+install=spawn-fcgi.install
+
+build() {
+  cd "$srcdir/$pkgname-$pkgver"
+
+  ./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib  --localstatedir=/var
+  make || return 1
+  make DESTDIR="$pkgdir/" install
+
+  mkdir -p $pkgdir/etc/rc.d $pkgdir/etc/conf.d
+
+  cp $srcdir/initscript $pkgdir/etc/rc.d/spawn-fcgi
+  chmod +x $pkgdir/etc/rc.d/spawn-fcgi
+
+  cp $srcdir/conf $pkgdir/etc/conf.d/spawn-fcgi
+}
+
+# vim:set ts=2 sw=2 et:

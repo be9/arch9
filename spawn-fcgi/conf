@@ -1,0 +1,18 @@
+# User and group to run PHP processes under
+USER="fcgi-user"
+GROUP="fcgi-group"
+
+# Address and port to bind to
+ADDRESS="127.0.0.1"
+PORT="10004"
+
+# PHP CGI binary to run
+BIN="/usr/bin/php-cgi"
+
+# Number of children to spawn by setting the PHP_FCGI_CHILDREN environment
+# variable. Default is not to overwrite the environment variable; php will
+# spawn no children if the variable is not set (same as setting it to 0).
+PHP_CHILDREN="0"
+
+# Number of children to fork
+FORK_CHILDREN="1"

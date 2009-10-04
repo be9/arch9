@@ -1,0 +1,7 @@
+post_install() {
+    echo ""
+    echo " >> Please configure spawn-fcgi by editing /etc/conf.d/spawn-fcgi"
+    echo ""
+    echo "Use /etc/rc.d/spawn-fcgi to start the daemon or"
+    echo "put it into DAEMONS variable in /etc/rc.conf"
+}
