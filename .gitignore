@@ -1,4 +1,5 @@
-*.tar.gz
+*.gz
+*.bz2
 */pkg
 */src
 *.sw?

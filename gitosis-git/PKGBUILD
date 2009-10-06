@@ -1,9 +1,9 @@
 # Contributor: Alper KANAT <alperkanat@raptiye.org>
 
 pkgname=gitosis-git
-pkgver=20091004
+pkgver=20091006
 _sha="dedb3dc63f413ed6eeba8082b7e93ad136b16d0d"
-pkgrel=2
+pkgrel=1
 pkgdesc="An application to help make hosting git repos easier and safer."
 url="http://eagain.net/gitweb/?p=gitosis.git"
 arch=(any)

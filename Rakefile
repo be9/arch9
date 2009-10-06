@@ -1,15 +1,30 @@
 ARCH = `arch`.strip
 REPO = 'arch9'
 
-def package(pkg)
-  pkgname = pkg.is_a?(Hash) ? pkg.keys.first : pkg
+def package(*args)
+  case args.size
+  when 1
+    if args.first.is_a?(Hash)
+      install = args.first.delete(:install)
+      pkgname = args.first.keys.first
+    else
+      pkgname = args.first
+      install = nil
+    end
+  when 2
+    pkgname = args.first
+    install = args.last.delete(:install)
+  else
+    raise ArgumentError
+  end
+
   pkgdir = pkgname.to_s.gsub('_','-')
 
   buildok = "#{pkgdir}/.build_ok"
   pkgbuild = "#{pkgdir}/PKGBUILD"
 
   desc "Build and install #{pkgdir} package"
-  task(pkg)
+  task(args.first)
   task(pkgname => buildok)
   task :packages => pkgname
 
@@ -26,7 +41,7 @@ def package(pkg)
 
     touch '.build_ok'
 
-    sh "yaourt -U #{pkg}"
+    sh "yaourt -U #{pkg}" if install
 
     Dir.chdir '..'
   end
@@ -75,9 +90,10 @@ task :default => [:all_packages, :update_indexes]
 
 package :mysql_ruby_enterprise => :ruby_enterprise
 package :fastthread_ruby_enterprise => :ruby_enterprise
-package :ruby_enterprise
+package :ruby_enterprise, :install => true
 package :passenger_enterprise_apache2 => [:passenger_enterprise_common, :fastthread_ruby_enterprise]
-package :passenger_enterprise_common => :ruby_enterprise
+package :passenger_enterprise_common => :ruby_enterprise, :install => true
 package :passenger_enterprise_nginx => :passenger_enterprise_common
 package :gitosis_git
 package :spawn_fcgi
+package :php52_noapache
