@@ -3,7 +3,7 @@
 _pkg=passenger
 pkgname=passenger-enterprise-apache2
 pkgver=2.2.5
-pkgrel=1
+pkgrel=2
 pkgdesc="mod_rails passenger module for apache2"
 arch=('i686' 'x86_64')
 url="http://www.modrails.com"
@@ -15,7 +15,7 @@ install=$_pkg.install
 
 build(){
   cd $srcdir/$_pkg-$pkgver
-  rake apache2
+  /opt/ruby-enterprise/bin/rake apache2
 
   # adapted from Rakefile (task fakeroot)
   libexecdir=$pkgdir/opt/ruby-enterprise/lib/phusion_passenger

@@ -3,18 +3,18 @@
 _pkg=passenger
 pkgname=passenger-enterprise-common
 pkgver=2.2.5
-pkgrel=1
+pkgrel=2
 pkgdesc="mod_rails passenger common code"
 arch=('i686' 'x86_64')
 url="http://www.modrails.com"
 license=('GPL')
-makedepends=('ruby')
+depends=('ruby-enterprise')
 source=(http://rubyforge.org/frs/download.php/63009/$_pkg-$pkgver.tar.gz)
 md5sums=("93838b842ce0a0c65d7c6ef9ce59c41f")
 
 build(){
   cd $srcdir/$_pkg-$pkgver
-  rake native_support doc
+  /opt/ruby-enterprise/bin/rake native_support doc
 
   # adapted from Rakefile (task fakeroot)
   libdir=$pkgdir/opt/ruby-enterprise/lib/ruby/1.8

@@ -12,7 +12,7 @@ _group=http
 
 pkgname=passenger-enterprise-nginx
 pkgver=2.2.5
-pkgrel=1
+pkgrel=2
 _nginxver=0.7.62
 
 pkgdesc="Nginx with mod_rails module"
@@ -35,7 +35,7 @@ md5sums=('ab22f1b7f098a90d803a3abb94d23f7e'
 build() {
   # >>>>>>>>>>> passenger-nginx part <<<<<<<<<<<<
   cd $srcdir/passenger-$pkgver
-  rake nginx
+  /opt/ruby-enterprise/bin/rake nginx
 
   extdir=$pkgdir/opt/ruby-enterprise/ext/nginx
 
