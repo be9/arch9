@@ -97,3 +97,4 @@ package :passenger_enterprise_nginx => :passenger_enterprise_common
 package :gitosis_git
 package :spawn_fcgi
 package :php52_noapache
+package :ruby_enterprise_redcloth => :ruby_enterprise
