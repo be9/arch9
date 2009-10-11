@@ -3,8 +3,8 @@ pkgname=ruby-enterprise-redcloth
 pkgver=4.2.2
 pkgrel=1
 pkgdesc="RedCloth gem for Ruby Enterprise"
-arch=(any)
-url=""
+arch=('i686' 'x86_64')
+url="http://redcloth.org"
 license=(MIT)
 depends=(ruby-enterprise)
 source=(http://gems.rubyforge.org/gems/RedCloth-$pkgver.gem)
@@ -19,5 +19,5 @@ build() {
 
   find "$pkgdir$_gemdir" -name '*.o' -delete
  }
- 
+
 # vim:set ts=2 sw=2 et:
