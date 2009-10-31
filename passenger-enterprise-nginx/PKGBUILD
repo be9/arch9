@@ -12,8 +12,8 @@ _group=http
 
 pkgname=passenger-enterprise-nginx
 pkgver=2.2.5
-pkgrel=2
-_nginxver=0.7.62
+pkgrel=3
+_nginxver=0.7.63
 
 pkgdesc="Nginx with mod_rails module"
 arch=('i686' 'x86_64')
@@ -29,7 +29,7 @@ backup=("${_conf_path#/}/nginx.conf" \
 	"etc/logrotate.d/nginx")
 source=(http://sysoev.ru/nginx/nginx-${_nginxver}.tar.gz \
 	nginx http://rubyforge.org/frs/download.php/63009/passenger-$pkgver.tar.gz)
-md5sums=('ab22f1b7f098a90d803a3abb94d23f7e'
+md5sums=('ddbdbeca5206dcc0cd7a4d9cbac00240'
          '0eb8611bf5bc1192ee7ee606fce772e2'
          '93838b842ce0a0c65d7c6ef9ce59c41f')
 build() {
