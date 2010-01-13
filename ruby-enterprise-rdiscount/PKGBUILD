@@ -1,6 +1,6 @@
 # Contributor: oleg dashevskii <olegdashevskii@gmail.com>
 pkgname=ruby-enterprise-rdiscount
-pkgver=1.3.5
+pkgver=1.5.5
 pkgrel=1
 pkgdesc="RDiscount gem for Ruby Enterprise"
 arch=('i686' 'x86_64')
@@ -9,7 +9,7 @@ license=(MIT)
 depends=(ruby-enterprise)
 source=(http://gems.rubyforge.org/gems/rdiscount-$pkgver.gem)
 noextract=(rdiscount-$pkgver.gem)
-md5sums=('23b32e3dfbb2e688db7e7d1f7e7e0d9f')
+md5sums=('0de0657e20d7ec1800b85c85360b76b5')
 
 build() {
   cd $srcdir
