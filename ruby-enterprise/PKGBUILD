@@ -1,7 +1,7 @@
 # Contributor: Jeffrey Gelens <jgelens@gmail.com>
 pkgname=ruby-enterprise
 pkgver=1.8.7
-_pkgver=2009.10
+_pkgver=2010.01
 pkgrel=2
 pkgdesc="Ruby Enterprise Edition is a drop-in, transparent solution for improving your Ruby on Rails website's scalability and performance, while decreasing memory usage."
 arch=('i686' 'x86_64')
@@ -10,9 +10,9 @@ license=('GPL2')
 depends=('openssl' 'zlib' 'readline')
 makedepends=('ruby')
 backup=()
-source=(http://rubyforge.org/frs/download.php/66162/ruby-enterprise-$pkgver-$_pkgver.tar.gz)
+source=(http://rubyforge.org/frs/download.php/68719/ruby-enterprise-$pkgver-$_pkgver.tar.gz)
 install=$pkgname.install
-md5sums=('3727eef7b6b1b2f31db7d091328d966e')
+md5sums=('587aaea02c86ddbb87394a340a25e554')
 
 build() {
   cd "$srcdir/$pkgname-$pkgver-$_pkgver"
