@@ -2,13 +2,13 @@
 pkgname=ruby-enterprise
 pkgver=1.8.7
 _pkgver=2010.01
-pkgrel=2
+pkgrel=4
 pkgdesc="Ruby Enterprise Edition is a drop-in, transparent solution for improving your Ruby on Rails website's scalability and performance, while decreasing memory usage."
 arch=('i686' 'x86_64')
 url="http://www.rubyenterpriseedition.com"
 license=('GPL2')
 depends=('openssl' 'zlib' 'readline')
-makedepends=('ruby')
+provides=('ruby')
 backup=()
 source=(http://rubyforge.org/frs/download.php/68719/ruby-enterprise-$pkgver-$_pkgver.tar.gz)
 install=$pkgname.install
