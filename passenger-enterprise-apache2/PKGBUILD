@@ -2,15 +2,15 @@
 
 _pkg=passenger
 pkgname=passenger-enterprise-apache2
-pkgver=2.2.9
+pkgver=2.2.10
 pkgrel=1
 pkgdesc="mod_rails passenger module for apache2"
 arch=('i686' 'x86_64')
 url="http://www.modrails.com"
 license=('GPL')
 depends=('apache' 'ruby-enterprise' 'passenger-enterprise-common')
-source=(http://rubyforge.org/frs/download.php/68051/$_pkg-$pkgver.tar.gz)
-md5sums=('ca4379e87db2de0336e5b096d296a767')
+source=(http://rubyforge.org/frs/download.php/69377/$_pkg-$pkgver.tar.gz)
+md5sums=('d6f86a7ca3224ca1fd59a6263024738d')
 install=$_pkg.install
 
 build(){
